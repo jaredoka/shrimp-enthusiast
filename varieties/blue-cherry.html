@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Cherry - Shrimp Enthusiast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+
+    /* ── VARIETY BANNER ── */
+    .variety-banner {
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .variety-banner img {
+      width: 100%;
+      display: block;
+      padding: 0 48px;
+    }
+
+    .variety-banner-caption {
+      text-align: center;
+      padding: 48px 56px 0;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .variety-banner-eyebrow {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .variety-banner-title {
+      font-family: 'Lora', serif;
+      font-size: 54px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.15;
+    }
+
+    .variety-banner-title em {
+      font-style: italic;
+      color: var(--blue-deep);
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 28px 56px;
+    }
+
+    .breadcrumb a {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--blue-darker);
+    }
+
+    /* ── TWO-COLUMN LAYOUT ── */
+    .variety-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 56px 96px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 52px;
+    }
+
+    /* ── LEFT COLUMN ── */
+    .variety-main h2 {
+      font-family: 'Lora', serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .variety-main p {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.9;
+    }
+
+    .variety-main h3 {
+      font-family: 'Lora', serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text);
+      margin-top: 44px;
+      margin-bottom: 20px;
+    }
+
+    /* ── PARAMS GRID ── */
+    .params-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .param-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--blue);
+      border-radius: 14px;
+      padding: 18px 16px;
+    }
+
+    .param-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+
+    .param-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ── RIGHT COLUMN / SIDEBAR ── */
+    .variety-sidebar {
+      position: sticky;
+      top: 88px;
+    }
+
+    .order-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      box-shadow: 0 6px 30px rgba(30,106,142,0.07);
+      position: relative;
+    }
+
+    .order-card::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 28px; right: 28px;
+      height: 3px;
+      background: var(--blue);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .order-price {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--blue-deep);
+      margin-bottom: 2px;
+    }
+
+    .order-price-unit {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .order-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+
+    .order-total {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .order-total span {
+      color: var(--blue-deep);
+    }
+
+    .order-qty-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .qty-stepper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
+    }
+
+    .qty-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .qty-btn:hover {
+      background: var(--bg-soft);
+      border-color: var(--blue);
+    }
+
+    .qty-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .qty-btn:disabled:hover {
+      background: var(--bg-card);
+      border-color: var(--border);
+    }
+
+    .qty-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text);
+      min-width: 48px;
+      text-align: center;
+    }
+
+    .order-cart-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--blue-deep);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 24px;
+      border-radius: 99px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .order-cart-btn:hover {
+      background: var(--blue-darker);
+      transform: translateY(-1px);
+    }
+
+    .order-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── ANIMATIONS (page-specific) ── */
+    .variety-banner { animation: fadeUp 0.5s 0.05s ease both; }
+
+    /* ── RESPONSIVE (page-specific) ── */
+    @media (max-width: 860px) {
+      .variety-layout {
+        grid-template-columns: 1fr;
+        padding: 0 24px 72px;
+      }
+      .variety-sidebar {
+        position: static;
+      }
+      .breadcrumb { padding: 20px 24px; }
+      .params-grid { grid-template-columns: repeat(2, 1fr); }
+      .variety-banner img { padding: 0 24px; }
+      .variety-banner-caption { padding: 36px 24px 0; }
+      .variety-banner-title { font-size: 38px; }
+    }
+
+    @media (max-width: 480px) {
+      .variety-banner img { padding: 0 12px; }
+      .variety-banner-title { font-size: 30px; }
+      .params-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 20c-8 0-15 4-20 10-3 4-5 8-6 13-1 4 0 8 2 12l3 5c2 3 3 7 3 11v9c0 3 2 5 5 5h26c3 0 5-2 5-5v-9c0-4 1-8 3-11l3-5c2-4 3-8 2-12-1-5-3-9-6-13-5-6-12-10-20-10z" fill="var(--blue-deep)" opacity="0.45"/><ellipse cx="40" cy="42" rx="3" ry="3" fill="var(--blue-darker)"/><ellipse cx="60" cy="42" rx="3" ry="3" fill="var(--blue-darker)"/></svg>
+      </div>
+      Shrimp Enthusiast
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="../about.html">About</a>
+      <a href="../shop.html">Shop</a>
+      <button class="nav-search-btn" id="searchBtn" aria-label="Search varieties">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="nav-cart-btn" id="cartBtn" aria-label="View cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        <span class="cart-badge" id="cartBadge"></span>
+      </button>
+      <div class="nav-social">
+        <a href="https://wa.me/6738740667" class="social-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.358A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.945 7.945 0 01-4.056-1.107l-.29-.173-3.01.82.849-2.944-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.595c-.242-.121-1.432-.707-1.654-.787-.222-.08-.384-.121-.545.121-.16.242-.625.787-.766.949-.14.161-.282.181-.523.06-.242-.12-1.021-.376-1.945-1.196-.718-.64-1.203-1.43-1.344-1.672-.14-.242-.015-.373.105-.493.109-.109.242-.282.363-.423.12-.14.161-.242.242-.403.08-.161.04-.302-.02-.423-.06-.121-.545-1.313-.748-1.797-.196-.473-.396-.408-.545-.416-.14-.007-.302-.009-.463-.009-.16 0-.423.06-.645.302-.222.242-.847.827-.847 2.016s.867 2.337.988 2.499c.12.161 1.706 2.605 4.133 3.652.578.25 1.028.399 1.38.51.58.185 1.107.159 1.524.096.465-.069 1.432-.586 1.634-1.151.201-.565.201-1.05.14-1.151-.06-.1-.221-.161-.463-.282z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/shrimp_enthusiast/" class="social-link instagram" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/shrimp.enthusiast.92/" class="social-link facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- VARIETY BANNER -->
+  <div class="variety-banner">
+    <img src="../images/blue-cherry.jpg" alt="Blue Cherry shrimp">
+  </div>
+  <div class="variety-banner-caption">
+    <span class="variety-banner-eyebrow">Neocaridina davidi</span>
+    <h1 class="variety-banner-title">Blue <em>Cherry</em></h1>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../shop.html">&larr; All varieties</a>
+  </div>
+
+  <!-- TWO-COLUMN LAYOUT -->
+  <div class="variety-layout">
+
+    <!-- LEFT COLUMN -->
+    <div class="variety-main">
+      <div class="reveal">
+        <h2>About this variety</h2>
+        <p>Blue Cherry shrimp share the same resilient nature as their red counterparts but bring a cool, calming hue to the aquarium. Colour intensity varies across grades - entry-level shrimp show a blue-grey tint, while higher-grade individuals display a consistent, vivid blue across the entire body. They're just as easy to keep and breed as Red Cherries, making them a great way to add colour variety without increasing the difficulty of your setup.</p>
+      </div>
+
+      <div class="reveal">
+        <h3>Water Parameters</h3>
+        <div class="params-grid">
+          <div class="param-tile">
+            <div class="param-label">pH</div>
+            <div class="param-value">7.0 – 7.8</div>
+          </div>
+          <div class="param-tile">
+            <div class="param-label">Temperature</div>
+            <div class="param-value">20 – 28 °C</div>
+          </div>
+          <div class="param-tile">
+            <div class="param-label">GH</div>
+            <div class="param-value">6 – 12 dGH</div>
+          </div>
+          <div class="param-tile">
+            <div class="param-label">KH</div>
+            <div class="param-value">2 – 8 dKH</div>
+          </div>
+          <div class="param-tile">
+            <div class="param-label">TDS</div>
+            <div class="param-value">150 – 300 ppm</div>
+          </div>
+          <div class="param-tile">
+            <div class="param-label">Ammonia</div>
+            <div class="param-value">0 ppm</div>
+          </div>
+          <div class="param-tile">
+            <div class="param-label">Nitrite</div>
+            <div class="param-value">0 ppm</div>
+          </div>
+          <div class="param-tile">
+            <div class="param-label">Nitrate</div>
+            <div class="param-value">&lt; 20 ppm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN / SIDEBAR -->
+    <div class="variety-sidebar">
+      <div class="order-card reveal">
+        <div class="order-price">BND $3.00</div>
+        <div class="order-price-unit">per shrimp</div>
+
+        <div class="order-qty-label">Quantity</div>
+        <div class="qty-stepper">
+          <button class="qty-btn" id="qtyMinus" aria-label="Decrease quantity" disabled>&#8722;</button>
+          <span class="qty-value" id="qtyValue">1</span>
+          <button class="qty-btn" id="qtyPlus" aria-label="Increase quantity">&#43;</button>
+        </div>
+
+        <hr class="order-divider">
+
+        <div class="order-total">Total: <span id="orderTotal">BND $3.00</span></div>
+
+        <button class="order-cart-btn" id="addCartBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="../index.html" class="footer-logo">
+      <div class="footer-logo-mark">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 20c-8 0-15 4-20 10-3 4-5 8-6 13-1 4 0 8 2 12l3 5c2 3 3 7 3 11v9c0 3 2 5 5 5h26c3 0 5-2 5-5v-9c0-4 1-8 3-11l3-5c2-4 3-8 2-12-1-5-3-9-6-13-5-6-12-10-20-10z" fill="var(--blue-deep)" opacity="0.45"/><ellipse cx="40" cy="42" rx="3" ry="3" fill="var(--blue-darker)"/><ellipse cx="60" cy="42" rx="3" ry="3" fill="var(--blue-darker)"/></svg>
+      </div>
+      Shrimp Enthusiast
+    </a>
+    <p>&copy; 2026 Shrimp Enthusiast &middot; Brunei Darussalam</p>
+    <div class="footer-links">
+      <a href="https://wa.me/6738740667" class="social-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.358A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.945 7.945 0 01-4.056-1.107l-.29-.173-3.01.82.849-2.944-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.595c-.242-.121-1.432-.707-1.654-.787-.222-.08-.384-.121-.545.121-.16.242-.625.787-.766.949-.14.161-.282.181-.523.06-.242-.12-1.021-.376-1.945-1.196-.718-.64-1.203-1.43-1.344-1.672-.14-.242-.015-.373.105-.493.109-.109.242-.282.363-.423.12-.14.161-.242.242-.403.08-.161.04-.302-.02-.423-.06-.121-.545-1.313-.748-1.797-.196-.473-.396-.408-.545-.416-.14-.007-.302-.009-.463-.009-.16 0-.423.06-.645.302-.222.242-.847.827-.847 2.016s.867 2.337.988 2.499c.12.161 1.706 2.605 4.133 3.652.578.25 1.028.399 1.38.51.58.185 1.107.159 1.524.096.465-.069 1.432-.586 1.634-1.151.201-.565.201-1.05.14-1.151-.06-.1-.221-.161-.463-.282z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/shrimp_enthusiast/" class="social-link instagram" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/shrimp.enthusiast.92/" class="social-link facebook" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="#" class="social-link tiktok" aria-label="TikTok">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52v-3.4a4.85 4.85 0 01-1-.14z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- CART OVERLAY -->
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart-panel">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="cart-close" id="cartClose" aria-label="Close cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-footer" id="cartFooter" style="display:none;">
+        <div class="cart-total">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-value" id="cartTotalValue">BND $0.00</span>
+        </div>
+        <a class="cart-checkout-btn" id="cartCheckoutBtn" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.358A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.945 7.945 0 01-4.056-1.107l-.29-.173-3.01.82.849-2.944-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.595c-.242-.121-1.432-.707-1.654-.787-.222-.08-.384-.121-.545.121-.16.242-.625.787-.766.949-.14.161-.282.181-.523.06-.242-.12-1.021-.376-1.945-1.196-.718-.64-1.203-1.43-1.344-1.672-.14-.242-.015-.373.105-.493.109-.109.242-.282.363-.423.12-.14.161-.242.242-.403.08-.161.04-.302-.02-.423-.06-.121-.545-1.313-.748-1.797-.196-.473-.396-.408-.545-.416-.14-.007-.302-.009-.463-.009-.16 0-.423.06-.645.302-.222.242-.847.827-.847 2.016s.867 2.337.988 2.499c.12.161 1.706 2.605 4.133 3.652.578.25 1.028.399 1.38.51.58.185 1.107.159 1.524.096.465-.069 1.432-.586 1.634-1.151.201-.565.201-1.05.14-1.151-.06-.1-.221-.161-.463-.282z"/></svg>
+          Checkout via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/shared.js"></script>
+  <script>
+    // ── Quantity Stepper + Add to Cart ──
+    (function() {
+      var varietyName = 'Blue Cherry';
+      var varietySlug = 'blue-cherry';
+      var pricePerShrimp = 3.00;
+      var varietyColor = '#6BA8D8';
+      var qty = 1;
+      var min = 1;
+      var max = 50;
+      var qtyValue = document.getElementById('qtyValue');
+      var qtyMinus = document.getElementById('qtyMinus');
+      var qtyPlus = document.getElementById('qtyPlus');
+      var totalEl = document.getElementById('orderTotal');
+      var addBtn = document.getElementById('addCartBtn');
+
+      function updateUI() {
+        qtyValue.textContent = qty;
+        qtyMinus.disabled = qty <= min;
+        qtyPlus.disabled = qty >= max;
+        totalEl.textContent = 'BND $' + (qty * pricePerShrimp).toFixed(2);
+      }
+
+      qtyMinus.addEventListener('click', function() {
+        if (qty > min) { qty--; updateUI(); }
+      });
+
+      qtyPlus.addEventListener('click', function() {
+        if (qty < max) { qty++; updateUI(); }
+      });
+
+      addBtn.addEventListener('click', function() {
+        Cart.addItem(varietyName, varietySlug, pricePerShrimp, qty, varietyColor);
+        addBtn.textContent = 'Added to Cart!';
+        setTimeout(function() { addBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg> Add to Cart'; }, 1200);
+      });
+
+      updateUI();
+      Cart.updateBadge();
+    })();
+  </script>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search varieties..." autocomplete="off">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+
+</body>
+</html>

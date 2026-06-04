@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shrimp Enthusiast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── HERO SLIDESHOW ── */
+    .photo-banner {
+      width: 100%;
+      height: 100vh;
+      height: 100svh;
+      background: var(--bg-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slideshow-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .slideshow-track img {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .slideshow-track .slide-placeholder {
+      min-width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--bg-soft);
+    }
+
+    .slideshow-track .slide-placeholder svg { opacity: 0.2; }
+
+    .slideshow-track .slide-placeholder span {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #999;
+    }
+
+    /* ── HERO CAPTION OVERLAY (top of slideshow) ── */
+    .slide-hero-caption {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 64px 72px 180px;
+      background: linear-gradient(to bottom, rgba(12,26,36,0.64) 0%, rgba(12,26,36,0.18) 52%, transparent 100%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .slide-hero-eyebrow {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.58);
+      margin-bottom: 16px;
+    }
+
+    .slide-hero-title {
+      font-family: 'Lora', serif;
+      font-size: 58px;
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.18;
+      max-width: 560px;
+    }
+
+    .slide-hero-title em {
+      font-style: italic;
+      color: var(--blue-mid);
+    }
+
+    .slide-hero-cta {
+      pointer-events: all;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 30px;
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 99px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .slide-hero-cta:hover {
+      background: #fff;
+      transform: translateY(-1px);
+    }
+
+    .slide-hero-cta svg { transition: transform 0.2s; }
+    .slide-hero-cta:hover svg { transform: translateX(3px); }
+
+    /* Prev / Next arrows */
+    .slide-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(255,255,255,0.85);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      backdrop-filter: blur(6px);
+    }
+
+    .slide-btn:hover {
+      background: #fff;
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .slide-btn.prev { left: 18px; }
+    .slide-btn.next { right: 18px; }
+
+    /* Dot indicators - hidden, variety bar takes over */
+    .slide-dots { display: none; }
+
+    /* ── SLIDE VARIETY BAR ── */
+    .slide-variety-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 52px 24px 22px;
+      background: linear-gradient(to top, rgba(12,26,36,0.65) 0%, transparent 100%);
+      z-index: 10;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .slide-variety-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,0.13);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 99px;
+      padding: 8px 16px 8px 11px;
+      color: rgba(255,255,255,0.82);
+      font-family: 'Inter', sans-serif;
+      font-size: 11.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .slide-variety-btn:hover {
+      background: rgba(255,255,255,0.26);
+      border-color: rgba(255,255,255,0.52);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .slide-variety-btn.active {
+      background: rgba(255,255,255,0.92);
+      border-color: rgba(255,255,255,0.95);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .slide-v-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.28);
+    }
+
+    /* ── NEOCARIDINA INFO SECTION ── */
+    .neo-section {
+      padding: 88px 56px 96px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .neo-header {
+      margin-bottom: 52px;
+    }
+
+    .neo-intro {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      max-width: 600px;
+      margin-top: 18px;
+    }
+
+    .neo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .neo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px 36px;
+    }
+
+    .neo-card-icon {
+      font-size: 28px;
+      margin-bottom: 18px;
+    }
+
+    .neo-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .neo-card p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      line-height: 1.85;
+    }
+
+    /* ── ANIMATIONS (page-specific) ── */
+    .photo-banner { animation: fadeUp 0.5s 0.05s ease both; }
+
+    /* ── RESPONSIVE (page-specific) ── */
+    @media (max-width: 860px) {
+      .photo-banner { height: 90vh; height: 90svh; }
+      .slide-hero-caption { padding: 40px 28px 160px; }
+      .slide-hero-title { font-size: 38px; }
+      .slide-variety-bar { gap: 7px; padding: 44px 16px 16px; }
+      .slide-variety-btn { font-size: 10.5px; padding: 7px 12px 7px 9px; }
+      .neo-section { padding: 56px 24px 72px; }
+      .neo-grid { grid-template-columns: 1fr; gap: 14px; }
+    }
+
+    @media (max-width: 520px) {
+      .slide-hero-title { font-size: 30px; }
+      .slide-hero-caption { padding: 32px 20px 140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-mark">🦐</div>
+      Shrimp Enthusiast
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="shop.html">Shop</a>
+      <button class="nav-search-btn" id="searchBtn" aria-label="Search varieties">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="nav-cart-btn" id="cartBtn" aria-label="View cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        <span class="cart-badge" id="cartBadge"></span>
+      </button>
+      <div class="nav-social">
+        <a href="https://wa.me/6738740667" class="social-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.358A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.945 7.945 0 01-4.056-1.107l-.29-.173-3.01.82.849-2.944-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.595c-.242-.121-1.432-.707-1.654-.787-.222-.08-.384-.121-.545.121-.16.242-.625.787-.766.949-.14.161-.282.181-.523.06-.242-.12-1.021-.376-1.945-1.196-.718-.64-1.203-1.43-1.344-1.672-.14-.242-.015-.373.105-.493.109-.109.242-.282.363-.423.12-.14.161-.242.242-.403.08-.161.04-.302-.02-.423-.06-.121-.545-1.313-.748-1.797-.196-.473-.396-.408-.545-.416-.14-.007-.302-.009-.463-.009-.16 0-.423.06-.645.302-.222.242-.847.827-.847 2.016s.867 2.337.988 2.499c.12.161 1.706 2.605 4.133 3.652.578.25 1.028.399 1.38.51.58.185 1.107.159 1.524.096.465-.069 1.432-.586 1.634-1.151.201-.565.201-1.05.14-1.151-.06-.1-.221-.161-.463-.282z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/shrimp_enthusiast/" class="social-link instagram" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/shrimp.enthusiast.92/" class="social-link facebook" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SLIDESHOW -->
+  <div class="photo-banner" id="photoBanner">
+    <div class="slideshow-track" id="slideshowTrack">
+      <!-- SLIDE 1: Red Cherry -->
+<img src="images/red-cherry.jpg" data-variety="red-cherry" style="min-width:100%; height:100%; object-fit:cover; flex-shrink:0;">
+      <!-- SLIDE 2: Blue Cherry -->
+<img src="images/blue-cherry.jpg" data-variety="blue-cherry" style="min-width:100%; height:100%; object-fit:cover; flex-shrink:0;">
+      <!-- SLIDE 3: Orange Sunkist -->
+<img src="images/orange-sunkist.jpg" data-variety="orange-sunkist" style="min-width:100%; height:100%; object-fit:cover; flex-shrink:0;">
+      <!-- SLIDE 4: Yellow Goldenback -->
+<img src="images/yellow-goldenback.jpg" data-variety="yellow-goldenback" style="min-width:100%; height:100%; object-fit:cover; flex-shrink:0;">
+      <!-- SLIDE 5: Bloody Mary -->
+<img src="images/bloody-mary.jpg" data-variety="bloody-mary" style="min-width:100%; height:100%; object-fit:cover; flex-shrink:0;">
+      <!-- SLIDE 6: Cull Shrimp -->
+<img src="images/cull-shrimp.jpg" data-variety="cull-shrimp" style="min-width:100%; height:100%; object-fit:cover; flex-shrink:0;">
+    </div>
+
+    <!-- Hero caption -->
+    <div class="slide-hero-caption">
+      <span class="slide-hero-eyebrow">Neocaridina Breeding · Brunei Darussalam</span>
+      <h1 class="slide-hero-title">Locally bred shrimp<br>for <em>passionate</em> hobbyists</h1>
+      <a href="shop.html" class="slide-hero-cta">
+        Browse the shop
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <!-- Arrows -->
+    <button class="slide-btn prev" id="slidePrev" aria-label="Previous">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="slide-btn next" id="slideNext" aria-label="Next">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+
+    <!-- Dots (hidden, kept for JS compat) -->
+    <div class="slide-dots" id="slideDots"></div>
+
+    <!-- Variety selector overlay -->
+    <div class="slide-variety-bar" id="slideVarietyBar">
+      <button class="slide-variety-btn active" data-index="0">
+        <span class="slide-v-dot" style="background: radial-gradient(circle at 35% 35%, #F07070, #C83232);"></span>
+        Red Cherry
+      </button>
+      <button class="slide-variety-btn" data-index="1">
+        <span class="slide-v-dot" style="background: radial-gradient(circle at 35% 35%, #A8CFED, #6BA8D8);"></span>
+        Blue Cherry
+      </button>
+      <button class="slide-variety-btn" data-index="2">
+        <span class="slide-v-dot" style="background: radial-gradient(circle at 35% 35%, #F7B84E, #E08A10);"></span>
+        Orange Sunkist
+      </button>
+      <button class="slide-variety-btn" data-index="3">
+        <span class="slide-v-dot" style="background: radial-gradient(circle at 35% 35%, #FFE084, #F0C030);"></span>
+        Yellow Goldenback
+      </button>
+      <button class="slide-variety-btn" data-index="4">
+        <span class="slide-v-dot" style="background: radial-gradient(circle at 35% 35%, #C04444, #7A1A1A);"></span>
+        Bloody Mary
+      </button>
+      <button class="slide-variety-btn" data-index="5">
+        <span class="slide-v-dot" style="background: radial-gradient(circle at 35% 35%, #BFBFBF, #888);"></span>
+        Cull Shrimp
+      </button>
+    </div>
+  </div>
+
+  <!-- NEOCARIDINA INFO SECTION -->
+  <section class="neo-section">
+    <div class="neo-header reveal">
+      <div class="section-eyebrow">About the species</div>
+      <h2 class="section-title">What are <em>Neocaridina?</em></h2>
+      <p class="neo-intro">Small, peaceful, and endlessly colourful - neocaridina shrimp have become one of the most popular inhabitants in the freshwater aquarium hobby worldwide.</p>
+    </div>
+
+    <div class="neo-grid">
+      <div class="neo-card reveal">
+        <div class="neo-card-icon">🦐</div>
+        <h3>The species</h3>
+        <p>Native to Taiwan and southern China, <em>Neocaridina davidi</em> rarely grows beyond 3–4 cm. The dazzling range of colours hobbyists know today - from Red Cherry to Bloody Mary - are all selectively bred from the same wild-type strain over decades of careful breeding.</p>
+      </div>
+      <div class="neo-card reveal" style="transition-delay: 0.08s">
+        <div class="neo-card-icon">🌿</div>
+        <h3>Why hobbyists love them</h3>
+        <p>Neocaridinas are tireless cleaners - they graze algae, pick at biofilm, and stir the substrate all day long. Peaceful with most community fish and breeding readily in well-kept tanks, they bring constant life and activity to any planted aquarium.</p>
+      </div>
+      <div class="neo-card reveal" style="transition-delay: 0.16s">
+        <div class="neo-card-icon">💧</div>
+        <h3>Care basics</h3>
+        <p>pH 7.0–7.8, temperature 20–28 °C, and stable water parameters are the foundation. A mature, cycled tank with live plants and hiding spots is all they need to thrive - and they'll reward you with generation after generation of new shrimp.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-outer">
+    <section class="cta-section" id="contact">
+      <div class="cta-text reveal">
+        <h2>Thinking about <em>raising shrimps?</em></h2>
+        <p>Whether you're just starting out or expanding your collection, we're here to help you get set up before you get started.</p>
+      </div>
+      <div class="cta-box reveal">
+        <div class="cta-box-label">Get in touch</div>
+        <p>Drop us a message and we'll get back to you with availability, pricing, and everything you need to know before you get started!</p>
+        <a href="https://wa.me/6738740667" target="_blank" rel="noopener">
+          Send a message
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">
+      <div class="footer-logo-mark">🦐</div>
+      Shrimp Enthusiast
+    </a>
+    <p>© 2026 Shrimp Enthusiast · Brunei Darussalam</p>
+    <div class="footer-links">
+      <a href="https://wa.me/6738740667" class="social-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.358A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.945 7.945 0 01-4.056-1.107l-.29-.173-3.01.82.849-2.944-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.595c-.242-.121-1.432-.707-1.654-.787-.222-.08-.384-.121-.545.121-.16.242-.625.787-.766.949-.14.161-.282.181-.523.06-.242-.12-1.021-.376-1.945-1.196-.718-.64-1.203-1.43-1.344-1.672-.14-.242-.015-.373.105-.493.109-.109.242-.282.363-.423.12-.14.161-.242.242-.403.08-.161.04-.302-.02-.423-.06-.121-.545-1.313-.748-1.797-.196-.473-.396-.408-.545-.416-.14-.007-.302-.009-.463-.009-.16 0-.423.06-.645.302-.222.242-.847.827-.847 2.016s.867 2.337.988 2.499c.12.161 1.706 2.605 4.133 3.652.578.25 1.028.399 1.38.51.58.185 1.107.159 1.524.096.465-.069 1.432-.586 1.634-1.151.201-.565.201-1.05.14-1.151-.06-.1-.221-.161-.463-.282z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/shrimp_enthusiast/" class="social-link instagram" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.facebook.com/shrimp.enthusiast.92/" class="social-link facebook" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="#" class="social-link tiktok" aria-label="TikTok">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.71a8.19 8.19 0 004.76 1.52v-3.4a4.85 4.85 0 01-1-.14z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- CART OVERLAY -->
+  <div class="cart-overlay" id="cartOverlay">
+    <div class="cart-panel">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button class="cart-close" id="cartClose" aria-label="Close cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-footer" id="cartFooter" style="display:none;">
+        <div class="cart-total">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-value" id="cartTotalValue">BND $0.00</span>
+        </div>
+        <a class="cart-checkout-btn" id="cartCheckoutBtn" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.358A9.945 9.945 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.945 7.945 0 01-4.056-1.107l-.29-.173-3.01.82.849-2.944-.19-.303A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8zm4.406-5.595c-.242-.121-1.432-.707-1.654-.787-.222-.08-.384-.121-.545.121-.16.242-.625.787-.766.949-.14.161-.282.181-.523.06-.242-.12-1.021-.376-1.945-1.196-.718-.64-1.203-1.43-1.344-1.672-.14-.242-.015-.373.105-.493.109-.109.242-.282.363-.423.12-.14.161-.242.242-.403.08-.161.04-.302-.02-.423-.06-.121-.545-1.313-.748-1.797-.196-.473-.396-.408-.545-.416-.14-.007-.302-.009-.463-.009-.16 0-.423.06-.645.302-.222.242-.847.827-.847 2.016s.867 2.337.988 2.499c.12.161 1.706 2.605 4.133 3.652.578.25 1.028.399 1.38.51.58.185 1.107.159 1.524.096.465-.069 1.432-.586 1.634-1.151.201-.565.201-1.05.14-1.151-.06-.1-.221-.161-.463-.282z"/></svg>
+          Checkout via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-modal">
+      <div class="search-input-wrap">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search varieties..." autocomplete="off">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <script src="js/shared.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
