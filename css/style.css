@@ -319,6 +319,22 @@ footer p {
 
 .footer-links a:hover { color: rgba(255,255,255,0.85); }
 
+.footer-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-nav a {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-nav a:hover { color: rgba(255,255,255,0.9); }
+
 /* ── ANIMATIONS ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(22px); }
@@ -665,6 +681,7 @@ footer p {
   nav { padding: 14px 24px; }
   .cta-section { grid-template-columns: 1fr; padding: 56px 24px; gap: 36px; }
   footer { padding: 28px 24px; flex-direction: column; gap: 20px; text-align: center; }
+  .footer-nav { justify-content: center; }
   .footer-links { justify-content: center; }
 }
 

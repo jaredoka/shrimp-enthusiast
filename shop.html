@@ -344,7 +344,10 @@
 
   <!-- PHOTO BANNER -->
   <div class="shop-banner">
-    <img src="images/shrimp-varieties-4.png" class="shop-banner-img" alt="Neocaridina shrimp varieties">
+    <picture>
+      <source srcset="images/shrimp-varieties-4.webp" type="image/webp">
+      <img src="images/shrimp-varieties-4.jpg" class="shop-banner-img" alt="Illustrated chart of 15 neocaridina shrimp colour varieties">
+    </picture>
   </div>
   <div class="shop-banner-caption">
     <span class="shop-banner-eyebrow">The Collection</span>
@@ -369,7 +372,10 @@
       <!-- Bloody Mary -->
       <a href="varieties/bloody-mary.html" class="shop-card reveal" data-price="4.00">
         <div class="shop-card-media">
-          <img src="images/bloody-mary.jpg" alt="Bloody Mary shrimp">
+          <picture>
+            <source srcset="images/bloody-mary.webp" type="image/webp">
+            <img src="images/bloody-mary.jpg" alt="Bloody Mary neocaridina shrimp with deep red colouration" loading="lazy">
+          </picture>
         </div>
         <div class="shop-card-body">
           <div class="shop-card-name">Bloody Mary</div>
@@ -383,7 +389,10 @@
       <!-- Blue Cherry -->
       <a href="varieties/blue-cherry.html" class="shop-card reveal" data-price="3.00" style="transition-delay: 0.07s">
         <div class="shop-card-media">
-          <img src="images/blue-cherry.jpg" alt="Blue Cherry shrimp">
+          <picture>
+            <source srcset="images/blue-cherry.webp" type="image/webp">
+            <img src="images/blue-cherry.jpg" alt="Blue Cherry neocaridina shrimp on aquarium substrate" loading="lazy">
+          </picture>
         </div>
         <div class="shop-card-body">
           <div class="shop-card-name">Blue Cherry</div>
@@ -397,7 +406,10 @@
       <!-- Cull Shrimp -->
       <a href="varieties/cull-shrimp.html" class="shop-card reveal" data-price="2.00" style="transition-delay: 0.14s">
         <div class="shop-card-media">
-          <img src="images/cull-shrimp.jpg" alt="Cull shrimp">
+          <picture>
+            <source srcset="images/cull-shrimp.webp" type="image/webp">
+            <img src="images/cull-shrimp.jpg" alt="Cull neocaridina shrimp with mixed colouration" loading="lazy">
+          </picture>
         </div>
         <div class="shop-card-body">
           <div class="shop-card-name">Cull Shrimp</div>
@@ -411,7 +423,10 @@
       <!-- Orange Sunkist -->
       <a href="varieties/orange-sunkist.html" class="shop-card reveal" data-price="4.00" style="transition-delay: 0.21s">
         <div class="shop-card-media">
-          <img src="images/orange-sunkist.jpg" alt="Orange Sunkist shrimp">
+          <picture>
+            <source srcset="images/orange-sunkist.webp" type="image/webp">
+            <img src="images/orange-sunkist.jpg" alt="Orange Sunkist neocaridina shrimp on driftwood" loading="lazy">
+          </picture>
         </div>
         <div class="shop-card-body">
           <div class="shop-card-name">Orange Sunkist</div>
@@ -425,7 +440,10 @@
       <!-- Red Cherry -->
       <a href="varieties/red-cherry.html" class="shop-card reveal" data-price="3.00" style="transition-delay: 0.28s">
         <div class="shop-card-media">
-          <img src="images/red-cherry.jpg" alt="Red Cherry shrimp">
+          <picture>
+            <source srcset="images/red-cherry.webp" type="image/webp">
+            <img src="images/red-cherry.jpg" alt="Red Cherry neocaridina shrimp in a planted aquarium" loading="lazy">
+          </picture>
         </div>
         <div class="shop-card-body">
           <div class="shop-card-name">Red Cherry</div>
@@ -439,7 +457,10 @@
       <!-- Yellow Goldenback -->
       <a href="varieties/yellow-goldenback.html" class="shop-card reveal" data-price="4.00" style="transition-delay: 0.35s">
         <div class="shop-card-media">
-          <img src="images/yellow-goldenback.jpg" alt="Yellow Goldenback shrimp">
+          <picture>
+            <source srcset="images/yellow-goldenback.webp" type="image/webp">
+            <img src="images/yellow-goldenback.jpg" alt="Yellow Goldenback neocaridina shrimp grazing on moss" loading="lazy">
+          </picture>
         </div>
         <div class="shop-card-body">
           <div class="shop-card-name">Yellow Goldenback</div>
@@ -451,6 +472,14 @@
       </a>
 
     </div>
+
+    <div class="shop-shipping-note reveal" style="margin-top: 48px; padding: 24px 28px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 16px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <span style="font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-secondary);">We deliver within Brunei only. All shrimp come with a full DOA replacement guarantee.</span>
+      <a href="shipping.html" style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-deep); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">
+        Shipping & DOA policy
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -459,6 +488,9 @@
       <div class="footer-logo-mark">🦐</div>
       Shrimp Enthusiast
     </a>
+    <div class="footer-nav">
+      <a href="shipping.html">Shipping & DOA</a>
+    </div>
     <p>© 2026 Shrimp Enthusiast · Brunei Darussalam</p>
     <div class="footer-links">
       <a href="https://wa.me/6738740667" class="social-link whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
