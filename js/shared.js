@@ -1,7 +1,22 @@
 /* ══════════════════════════════════════════════════
    Shrimp Enthusiast — Shared JS
-   Nav toggle, search, cart, scroll reveal
+   Analytics, nav toggle, search, cart, scroll reveal
    ══════════════════════════════════════════════════ */
+
+// ── Google Analytics (GA4) ──
+// Replace G-XXXXXXXXXX with your actual GA4 Measurement ID
+(function() {
+  var GA_ID = 'G-XXXXXXXXXX';
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+  document.head.appendChild(s);
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+})();
 
 // ── Scroll Reveal ──
 (function() {
