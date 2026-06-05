@@ -109,6 +109,7 @@
 // ── Cart System ──
 var Cart = (function() {
   var STORAGE_KEY = 'shrimpCart';
+  function esc(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
   function getCart() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
     catch(e) { return []; }
@@ -162,18 +163,18 @@ var Cart = (function() {
     cart.forEach(function(item) {
       var subtotal = (item.price * item.qty).toFixed(2);
       html += '<div class="cart-item">' +
-        '<span class="cart-item-dot" style="background:' + item.color + '"></span>' +
+        '<span class="cart-item-dot" style="background:' + esc(item.color) + '"></span>' +
         '<div class="cart-item-info">' +
-          '<div class="cart-item-name">' + item.name + '</div>' +
+          '<div class="cart-item-name">' + esc(item.name) + '</div>' +
           '<div class="cart-item-detail">BND $' + item.price.toFixed(2) + ' each</div>' +
         '</div>' +
         '<div class="cart-item-qty">' +
-          '<button class="cart-item-qty-btn" data-slug="' + item.slug + '" data-delta="-1">&#8722;</button>' +
+          '<button class="cart-item-qty-btn" data-slug="' + esc(item.slug) + '" data-delta="-1">&#8722;</button>' +
           '<span>' + item.qty + '</span>' +
-          '<button class="cart-item-qty-btn" data-slug="' + item.slug + '" data-delta="1">&#43;</button>' +
+          '<button class="cart-item-qty-btn" data-slug="' + esc(item.slug) + '" data-delta="1">&#43;</button>' +
         '</div>' +
         '<span class="cart-item-price">$' + subtotal + '</span>' +
-        '<button class="cart-item-remove" data-slug="' + item.slug + '" aria-label="Remove">' +
+        '<button class="cart-item-remove" data-slug="' + esc(item.slug) + '" aria-label="Remove">' +
           '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
         '</button></div>';
     });
