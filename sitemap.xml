@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/shop.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/shop.html</loc>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/about.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/about.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/shipping.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/shipping.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/faq.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/faq.html</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/privacy.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/privacy.html</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/terms.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/terms.html</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/varieties/red-cherry.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/varieties/red-cherry.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/varieties/blue-cherry.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/varieties/blue-cherry.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/varieties/orange-sunkist.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/varieties/orange-sunkist.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/varieties/yellow-goldenback.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/varieties/yellow-goldenback.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/varieties/bloody-mary.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/varieties/bloody-mary.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://jaredoka.github.io/shrimp-enthusiast/varieties/cull-shrimp.html</loc>
+    <loc>https://shrimp-enthusiast.pages.dev/varieties/cull-shrimp.html</loc>
     <priority>0.8</priority>
   </url>
 </urlset>

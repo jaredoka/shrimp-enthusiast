@@ -6,8 +6,7 @@ A static e-commerce website for a neocaridina shrimp breeding business based in 
 
 ## Live Demo
 
-<!-- Update this link once GitHub Pages is enabled -->
-**Coming soon** — will be hosted via GitHub Pages.
+**[shrimp-enthusiast.pages.dev](https://shrimp-enthusiast.pages.dev/)**
 
 ## Screenshots
 
