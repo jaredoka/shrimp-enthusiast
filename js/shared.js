@@ -4,9 +4,8 @@
    ══════════════════════════════════════════════════ */
 
 // ── Google Analytics (GA4) ──
-// Replace G-XXXXXXXXXX with your actual GA4 Measurement ID
 (function() {
-  var GA_ID = 'G-XXXXXXXXXX';
+  var GA_ID = 'G-CEREVQLZDG';
   var s = document.createElement('script');
   s.async = true;
   s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
