@@ -238,3 +238,45 @@ var Cart = (function() {
 })();
 
 Cart.updateBadge();
+
+// ── Stock Status ──
+// Stock is configured in js/stock.js — edit that file to toggle availability.
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof STOCK === 'undefined') return;
+
+  // Shop page: inject badge into each product card
+  document.querySelectorAll('.shop-card').forEach(function(card) {
+    var href = card.getAttribute('href');
+    if (!href) return;
+    var slug = href.replace('varieties/', '').replace('.html', '');
+    if (!(slug in STOCK)) return;
+    var inStock = STOCK[slug];
+    var badge = document.createElement('span');
+    badge.className = 'stock-badge ' + (inStock ? 'in-stock' : 'out-of-stock');
+    badge.textContent = inStock ? 'Available' : 'Out of Stock';
+    var body = card.querySelector('.shop-card-body');
+    if (body) body.insertBefore(badge, body.firstChild);
+    if (!inStock) card.classList.add('out-of-stock');
+  });
+
+  // Variety page: inject badge into order card, disable add-to-cart if out of stock
+  var orderCard = document.querySelector('.order-card');
+  if (orderCard) {
+    var slug = window.location.pathname.split('/').pop().replace('.html', '');
+    if (!(slug in STOCK)) return;
+    var inStock = STOCK[slug];
+    var badge = document.createElement('span');
+    badge.className = 'stock-badge ' + (inStock ? 'in-stock' : 'out-of-stock');
+    badge.textContent = inStock ? 'Available' : 'Out of Stock';
+    badge.style.marginBottom = '16px';
+    orderCard.insertBefore(badge, orderCard.firstChild);
+    if (!inStock) {
+      orderCard.classList.add('out-of-stock');
+      var addBtn = document.getElementById('addCartBtn');
+      if (addBtn) {
+        addBtn.disabled = true;
+        addBtn.textContent = 'Out of Stock';
+      }
+    }
+  }
+});
