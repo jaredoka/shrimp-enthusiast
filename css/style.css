@@ -115,13 +115,11 @@ nav {
 .social-link.whatsapp:hover     { color: #25D366; }
 .social-link.instagram:hover    { color: #E1306C; }
 .social-link.facebook:hover     { color: #1877F2; }
-.social-link.tiktok:hover       { color: #ff0050; }
 
 footer .social-link                 { color: rgba(255,255,255,0.38); }
 footer .social-link.whatsapp:hover  { color: #25D366; }
 footer .social-link.instagram:hover { color: #E1306C; }
 footer .social-link.facebook:hover  { color: #1877F2; }
-footer .social-link.tiktok:hover    { color: #ff0050; }
 
 /* ── HAMBURGER NAV ── */
 .nav-toggle {
@@ -759,6 +757,21 @@ footer p {
     border-bottom: 1px solid var(--border);
     letter-spacing: 0.07em;
   }
+  .nav-search-btn,
+  .nav-cart-btn {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    justify-content: flex-start;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+  .nav-search-btn::after { content: 'Search'; }
+  .nav-cart-btn::after { content: 'Cart'; }
   .nav-social {
     border-left: none;
     padding-left: 0;
