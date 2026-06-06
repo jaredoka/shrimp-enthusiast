@@ -1,51 +1,97 @@
 # Shrimp Enthusiast
 
-A static e-commerce website for a neocaridina shrimp breeding business based in Brunei Darussalam.
+A static e-commerce website for a neocaridina shrimp breeding business based in Brunei Darussalam. Built with plain HTML, CSS, and JavaScript — no frameworks, no build tools, no dependencies.
 
-> This project was developed as a learning exercise using AI-assisted development tools. I used AI for scaffolding, debugging, and implementation suggestions while studying web development fundamentals through The Odin Project.
+> I built this project while learning web development through The Odin Project, using AI-assisted development tools (Claude Code CLI) for scaffolding, debugging, and implementation guidance.
 
 ## Live Demo
 
 **[shrimpenthusiast.com](https://shrimpenthusiast.com/)**
 
-## Screenshots
-
-<!-- Add screenshots of the homepage, shop page, and a variety page here -->
-*Screenshots to be added.*
-
 ## Features
 
-- **Homepage** with an auto-advancing hero slideshow showcasing 6 shrimp varieties
-- **Shop page** with product cards, sorting (default / price asc / price desc), and add-to-cart functionality
-- **6 individual variety pages** with detailed descriptions, water parameters, and per-variety ordering
-- **About page** telling the story behind the business
-- **Cart system** powered by `localStorage` with quantity controls and WhatsApp checkout integration
-- **Search overlay** for quickly finding varieties by name
-- **Responsive design** with hamburger navigation for mobile viewports
-- **Scroll-reveal animations** for content sections
+- **Hero slideshow** with auto-rotation, touch swipe gestures, and variety-bar navigation
+- **Shop page** with product cards, sort-by-price controls, and stock availability badges
+- **6 product pages** with detailed care info, water parameters, quantity steppers, and per-item ordering
+- **Cart system** — localStorage-backed, with quantity controls, subtotals, and WhatsApp checkout
+- **Search overlay** — real-time variety filtering with colour-coded results and keyboard support
+- **Stock toggle** — centralized config file that syncs availability across shop and product pages
+- **Responsive design** — mobile hamburger nav with full-width touch targets, tablet and desktop layouts
+- **SEO** — Open Graph tags, canonical URLs, JSON-LD structured data, geo-targeting, XML sitemap
+- **Security headers** — X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy
 
-## Tech Stack
+## Built With
 
-- **HTML5** — semantic markup, no templating engine
-- **CSS3** — custom properties, grid layout, flexbox, `@keyframes` animations
-- **Vanilla JavaScript** — no frameworks or libraries
-- **localStorage** — client-side cart persistence
-- **WhatsApp API** — checkout via pre-filled deep links
-- **Google Fonts** — Inter (UI) and Lora (headings)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Cloudflare Pages](https://img.shields.io/badge/Cloudflare%20Pages-F38020?style=flat&logo=cloudflare&logoColor=white)
+![Google Analytics](https://img.shields.io/badge/Google%20Analytics-E37400?style=flat&logo=googleanalytics&logoColor=white)
+
+## What I Learned
+
+### HTML & Semantic Markup
+
+- Structuring a multi-page site (13 pages) with consistent navigation, footers, and shared scripts
+- Writing semantic HTML (`<nav>`, `<section>`, `<footer>`, `<button>`) for accessibility and SEO
+- Adding ARIA attributes (`aria-label`, `aria-expanded`, `aria-hidden`) to make interactive elements screen-reader friendly
+- Implementing JSON-LD structured data (Product, LocalBusiness, ItemList schemas) for rich search results
+- Using Open Graph and geo-targeting meta tags so pages display correctly when shared on social media
+
+### CSS & Responsive Design
+
+- Building layouts with CSS Grid (shop card grid, info card sections) and Flexbox (navigation, cart items)
+- Using CSS custom properties (`--text`, `--bg-card`, `--blue-deep`) for a consistent design system
+- Creating responsive breakpoints (860px for tablet, 640px for mobile) that restructure navigation, grids, and typography
+- Implementing a mobile hamburger menu with `backdrop-filter: blur()` and slide-down animation
+- Designing touch-friendly mobile UI — full-width nav buttons with text labels instead of small icon-only targets
+- Using `object-fit: cover` with `aspect-ratio` for consistent image cropping across different photo dimensions
+- Building scroll-reveal animations with CSS transitions triggered by JavaScript
+
+### JavaScript & DOM Manipulation
+
+- Building a shopping cart from scratch using `localStorage` for persistence across page visits and browser sessions
+- Implementing a hero slideshow with CSS `transform: translateX()`, touch swipe detection, auto-rotation with user-pause awareness, and dot/variety-bar navigation
+- Creating a real-time search overlay that filters results dynamically, handles keyboard shortcuts (Escape to close), and resolves relative paths from subdirectories
+- Writing a product sorting system that reorders DOM elements by price using `data-*` attributes
+- Building a stock availability system with a centralized config file (`stock.js`) that syncs badges and disables add-to-cart across multiple pages
+- Escaping HTML entities in user-facing cart output to prevent XSS injection from manipulated localStorage data
+
+### Deployment & DevOps
+
+- Deploying a static site on Cloudflare Pages with auto-deploy from a GitHub `main` branch
+- Configuring a custom domain (`shrimpenthusiast.com`) with Cloudflare DNS
+- Setting up security headers via Cloudflare's `_headers` file (MIME sniffing prevention, clickjacking protection, referrer policy, permissions policy)
+- Creating an XML sitemap with priority weighting for search engine crawling
+- Integrating Google Analytics 4 for visitor tracking
+
+### AI-Assisted Development Workflow
+
+- Using **Claude Code CLI** on Windows to scaffold pages, debug CSS layout issues, and implement features iteratively
+- Installing and using **custom skills** (e.g. the `/handoff` skill) to create structured context documents for passing work between agent sessions
+- Writing **handoff documents** that summarize completed work, pending tasks, architecture decisions, and file-level changes — enabling seamless continuity across multiple sessions
+- Learning to describe problems clearly and review AI-generated code critically, treating AI as a pair-programming tool rather than a black box
 
 ## Project Structure
 
 ```
 Website/
-├── index.html              # Homepage
-├── shop.html               # Shop page
-├── about.html              # About page
+├── index.html                # Homepage with hero slideshow
+├── shop.html                 # Product grid with sorting and stock badges
+├── about.html                # Business story
+├── shipping.html             # Shipping & DOA policy
+├── faq.html                  # FAQ (15 questions, 5 categories)
+├── privacy.html              # Privacy policy
+├── terms.html                # Terms of service
+├── sitemap.xml               # XML sitemap for search engines
+├── _headers                  # Cloudflare Pages security headers
 ├── css/
-│   └── style.css           # Shared stylesheet
+│   └── style.css             # Shared stylesheet (~780 lines)
 ├── js/
-│   ├── shared.js           # Nav toggle, search, cart system, scroll reveal
-│   ├── main.js             # Homepage slideshow
-│   └── shop.js             # Shop sorting logic
+│   ├── shared.js             # Analytics, nav, search, cart, stock rendering
+│   ├── main.js               # Homepage slideshow logic
+│   ├── shop.js               # Shop sorting controls
+│   └── stock.js              # Centralized stock availability config
 ├── varieties/
 │   ├── red-cherry.html
 │   ├── blue-cherry.html
@@ -53,34 +99,22 @@ Website/
 │   ├── yellow-goldenback.html
 │   ├── bloody-mary.html
 │   └── cull-shrimp.html
-└── images/                 # Variety photos and collage assets
+└── images/                   # Product photos (WebP format)
 ```
 
-## How to Run Locally
+## Run Locally
 
-No build step required. This is a plain HTML/CSS/JS site.
+No build step required — just HTML, CSS, and JS.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/jaredoka/shrimp-enthusiast.git
-   ```
-2. Open `index.html` in your browser, or serve the directory with any static file server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
+```bash
+git clone https://github.com/jaredoka/shrimp-enthusiast.git
+cd shrimp-enthusiast
 
-   # Using Node.js (npx)
-   npx serve .
-   ```
-3. Navigate to `http://localhost:8000` (or whichever port your server uses).
+# Serve with Python
+python -m http.server 8000
 
-## Roadmap
+# Or with Node.js
+npx serve .
+```
 
-- [ ] Shipping & DOA policy page
-- [ ] Image optimization (compression, WebP, lazy loading)
-- [ ] SEO basics (meta descriptions, Open Graph tags, sitemap, JSON-LD)
-- [ ] FAQ page
-- [ ] Privacy policy and terms of sale pages
-- [ ] Analytics integration (GA4)
-- [ ] Email capture for restock notifications
-- [ ] Payment options research and documentation
+Then open `http://localhost:8000`.
