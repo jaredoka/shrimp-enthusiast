@@ -30,29 +30,10 @@
     .about-banner-img {
       width: 100%;
       display: block;
-      padding: 0 48px;
-    }
-
-    .about-banner-placeholder {
-      width: 100%;
-      min-height: 340px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      background: var(--bg-soft);
-    }
-
-    .about-banner-placeholder svg { opacity: 0.18; }
-
-    .about-banner-placeholder span {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #aab8c0;
+      padding: 0 0px;
+      aspect-ratio: 1400 / 462;
+      object-fit: cover;
+      object-position: center 75%; /* adjust per variety: e.g. "center 30%", "top", "bottom" */
     }
 
     .about-banner-caption {
@@ -237,8 +218,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 860px) {
-      .about-banner-img { padding: 0 24px; }
-      .about-banner-placeholder { min-height: 260px; }
+      .about-banner-img { padding: 0 0px; }
       .about-banner-title { font-size: 38px; }
       .about-banner-caption { padding: 36px 24px 0; }
       .story-outer { padding: 56px 24px 56px; }
@@ -249,8 +229,7 @@
     }
 
     @media (max-width: 480px) {
-      .about-banner-img { padding: 0 12px; }
-      .about-banner-placeholder { min-height: 200px; }
+      .about-banner-img { padding: 0 0px; }
       .about-banner-title { font-size: 30px; }
     }
   </style>
@@ -292,16 +271,8 @@
   </nav>
 
   <!-- BANNER -->
-  <!-- To add a photo: replace the placeholder div with <img src="your-photo.jpg" class="about-banner-img" alt="Shrimp Enthusiast breeding setup"> -->
   <div class="about-banner">
-    <div class="about-banner-placeholder">
-      <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <rect x="3" y="6" width="18" height="14" rx="2" ry="2"/>
-        <circle cx="12" cy="13" r="3"/>
-        <path d="M8 6l1.5-2h5L16 6"/>
-      </svg>
-      <span>Tank photo · coming soon</span>
-    </div>
+    <img src="images/about-page.webp" class="about-banner-img" alt="Shrimp Enthusiast breeding setup" loading="eager">
   </div>
   <div class="about-banner-caption">
     <span class="about-banner-eyebrow">The Breeder</span>

@@ -772,6 +772,10 @@ footer p {
   }
   .nav-search-btn::after { content: 'Search'; }
   .nav-cart-btn::after { content: 'Cart'; }
+  .nav-cart-btn .cart-badge {
+    position: static;
+    margin-left: 2px;
+  }
   .nav-social {
     border-left: none;
     padding-left: 0;
