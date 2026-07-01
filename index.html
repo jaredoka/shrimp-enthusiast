@@ -255,9 +255,16 @@
       padding: 32px 28px 36px;
     }
 
+    .neo-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
     .neo-card-icon {
-      font-size: 28px;
-      margin-bottom: 18px;
+      font-size: 24px;
+      line-height: 1;
     }
 
     .neo-card h3 {
@@ -265,7 +272,6 @@
       font-size: 20px;
       font-weight: 500;
       color: var(--text);
-      margin-bottom: 12px;
     }
 
     .neo-card p {
@@ -438,18 +444,24 @@
 
     <div class="neo-grid">
       <div class="neo-card reveal">
-        <div class="neo-card-icon">🦐</div>
-        <h3>The species</h3>
+        <div class="neo-card-header">
+          <div class="neo-card-icon">🦐</div>
+          <h3>The species</h3>
+        </div>
         <p>Native to Taiwan and southern China, <em>Neocaridina davidi</em> rarely grows beyond 3–4 cm. The dazzling range of colours hobbyists know today - from Red Cherry to Bloody Mary - are all selectively bred from the same wild-type strain over decades of careful breeding.</p>
       </div>
       <div class="neo-card reveal" style="transition-delay: 0.08s">
-        <div class="neo-card-icon">🌿</div>
-        <h3>Why hobbyists love them</h3>
+        <div class="neo-card-header">
+          <div class="neo-card-icon">🌿</div>
+          <h3>Why hobbyists love them</h3>
+        </div>
         <p>Neocaridinas are tireless cleaners - they graze algae, pick at biofilm, and stir the substrate all day long. Peaceful with most community fish and breeding readily in well-kept tanks, they bring constant life and activity to any planted aquarium.</p>
       </div>
       <div class="neo-card reveal" style="transition-delay: 0.16s">
-        <div class="neo-card-icon">💧</div>
-        <h3>Care basics</h3>
+        <div class="neo-card-header">
+          <div class="neo-card-icon">💧</div>
+          <h3>Care basics</h3>
+        </div>
         <p>pH 7.0–7.8, temperature 20–28 °C, and stable water parameters are the foundation. A mature, cycled tank with live plants and hiding spots is all they need to thrive - and they'll reward you with generation after generation of new shrimp.</p>
       </div>
     </div>
