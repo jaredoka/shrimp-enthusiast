@@ -118,3 +118,43 @@ npx serve .
 ```
 
 Then open `http://localhost:8000`.
+
+## Development Workflow
+
+This project uses **GitHub Flow**. The `main` branch is always production — Cloudflare Pages auto-deploys it to [shrimpenthusiast.com](https://shrimpenthusiast.com/).
+
+### Rules
+
+- **Never commit directly to `main`.**
+- Every change (feature, fix, chore) starts on its own branch.
+- Changes merge into `main` via a Pull Request on GitHub.
+- Cloudflare Pages creates a preview deployment for every PR automatically.
+
+### Branch naming
+
+| Prefix | Use for | Example |
+|--------|---------|---------|
+| `feature/` | New functionality | `feature/email-notifications` |
+| `fix/` | Bug fixes | `fix/cart-quantity-not-updating` |
+| `chore/` | Config, docs, cleanup | `chore/update-readme` |
+
+### Starting a new task
+
+```bash
+git checkout main && git pull origin main
+git checkout -b feature/<task-name>
+# ... make changes, commit ...
+git push -u origin feature/<task-name>
+# Open PR on GitHub → review → merge → delete branch
+```
+
+### Branch protection
+
+To prevent accidental pushes to `main`, configure branch protection in the GitHub repo settings:
+
+1. Go to **Settings → Branches** in the GitHub repo.
+2. Click **Add branch ruleset** (or **Add rule** under classic protection).
+3. Set the branch name pattern to `main`.
+4. Enable **Require a pull request before merging**.
+5. Optionally enable **Require approvals** (useful if collaborating).
+6. Save the rule.
