@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home - Shrimp Enthusiast</title>
+  <title>Home | Shrimp Enthusiast</title>
   <meta name="description" content="Brunei's neocaridina shrimp breeder — buy Red Cherry, Blue Cherry, Orange Sunkist, Yellow Goldenback, Bloody Mary, and Cull shrimp locally bred in Brunei Darussalam.">
   <meta name="geo.region" content="BN">
   <meta name="geo.placename" content="Brunei Darussalam">
@@ -16,6 +16,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
     /* ── HERO SLIDESHOW ── */
@@ -255,9 +257,16 @@
       padding: 32px 28px 36px;
     }
 
+    .neo-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
     .neo-card-icon {
-      font-size: 28px;
-      margin-bottom: 18px;
+      font-size: 24px;
+      line-height: 1;
     }
 
     .neo-card h3 {
@@ -265,7 +274,6 @@
       font-size: 20px;
       font-weight: 500;
       color: var(--text);
-      margin-bottom: 12px;
     }
 
     .neo-card p {
@@ -330,7 +338,7 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="logo">
-      <div class="logo-mark">🦐</div>
+      <div class="logo-mark"><img src="images/logo.webp" alt="Shrimp Enthusiast logo" width="70" height="70"></div>
       Shrimp Enthusiast
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -438,18 +446,24 @@
 
     <div class="neo-grid">
       <div class="neo-card reveal">
-        <div class="neo-card-icon">🦐</div>
-        <h3>The species</h3>
+        <div class="neo-card-header">
+          <h3>The species</h3>
+          <div class="neo-card-icon">🦐</div>
+        </div>
         <p>Native to Taiwan and southern China, <em>Neocaridina davidi</em> rarely grows beyond 3–4 cm. The dazzling range of colours hobbyists know today - from Red Cherry to Bloody Mary - are all selectively bred from the same wild-type strain over decades of careful breeding.</p>
       </div>
       <div class="neo-card reveal" style="transition-delay: 0.08s">
-        <div class="neo-card-icon">🌿</div>
-        <h3>Why hobbyists love them</h3>
+        <div class="neo-card-header">
+          <h3>Why hobbyists love them</h3>
+          <div class="neo-card-icon">🌿</div>
+        </div>
         <p>Neocaridinas are tireless cleaners - they graze algae, pick at biofilm, and stir the substrate all day long. Peaceful with most community fish and breeding readily in well-kept tanks, they bring constant life and activity to any planted aquarium.</p>
       </div>
       <div class="neo-card reveal" style="transition-delay: 0.16s">
-        <div class="neo-card-icon">💧</div>
-        <h3>Care basics</h3>
+        <div class="neo-card-header">
+          <h3>Care basics</h3>
+          <div class="neo-card-icon">💧</div>
+        </div>
         <p>pH 7.0–7.8, temperature 20–28 °C, and stable water parameters are the foundation. A mature, cycled tank with live plants and hiding spots is all they need to thrive - and they'll reward you with generation after generation of new shrimp.</p>
       </div>
     </div>
@@ -476,7 +490,7 @@
   <!-- FOOTER -->
   <footer>
     <a href="#" class="footer-logo">
-      <div class="footer-logo-mark">🦐</div>
+      <div class="footer-logo-mark"><img src="images/logo.webp" alt="Shrimp Enthusiast logo" width="40" height="40"></div>
       Shrimp Enthusiast
     </a>
     <div class="footer-nav">

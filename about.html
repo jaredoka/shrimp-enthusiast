@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About - Shrimp Enthusiast</title>
+  <title>About | Shrimp Enthusiast</title>
   <meta name="description" content="Neocaridina shrimp breeder in Brunei Darussalam — learn about Shrimp Enthusiast and our passion for quality shrimp keeping and breeding.">
   <meta name="geo.region" content="BN">
   <meta name="geo.placename" content="Brunei Darussalam">
@@ -16,6 +16,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="css/style.css">
   <style>
     /* ── ABOUT BANNER ── */
@@ -161,17 +163,24 @@
       padding: 32px 28px 36px;
     }
 
+    .why-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
     .why-card-icon {
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: var(--blue-light);
       border: 1px solid var(--blue-mid);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: 18px;
+      flex-shrink: 0;
     }
 
     .why-card h3 {
@@ -179,7 +188,6 @@
       font-size: 19px;
       font-weight: 500;
       color: var(--text);
-      margin-bottom: 10px;
     }
 
     .why-card p {
@@ -239,7 +247,7 @@
   <!-- NAV -->
   <nav>
     <a href="index.html" class="logo">
-      <div class="logo-mark">🦐</div>
+      <div class="logo-mark"><img src="images/logo.webp" alt="Shrimp Enthusiast logo" width="70" height="70"></div>
       Shrimp Enthusiast
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -306,18 +314,24 @@
       </div>
       <div class="why-grid">
         <div class="why-card reveal">
-          <div class="why-card-icon">🤝</div>
-          <h3>Support local hobbyists</h3>
+          <div class="why-card-header">
+            <h3>Support local hobbyists</h3>
+            <div class="why-card-icon">🤝</div>
+          </div>
           <p>The aquarium hobby in Brunei grows stronger when we support each other. Whether you get your shrimp from us or from another local fish shop, buying locally keeps the community alive and gives you access to healthier livestock and real advice from people who care.</p>
         </div>
         <div class="why-card reveal" style="transition-delay: 0.08s">
-          <div class="why-card-icon">💧</div>
-          <h3>Raised in Brunei water</h3>
+          <div class="why-card-header">
+            <h3>Raised in Brunei water</h3>
+            <div class="why-card-icon">💧</div>
+          </div>
           <p>Our shrimp are bred and raised in local water conditions. That means less acclimatisation stress and a much smoother transition into your Brunei-based tank - a small detail that makes a real difference in survival and breeding.</p>
         </div>
         <div class="why-card reveal" style="transition-delay: 0.16s">
-          <div class="why-card-icon">📦</div>
-          <h3>No shipping stress</h3>
+          <div class="why-card-header">
+            <h3>No shipping stress</h3>
+            <div class="why-card-icon">📦</div>
+          </div>
           <p>Shrimp bought online spend days sealed in a bag - temperature swings, oxygen depletion, stress hormones. When you buy from us locally, your shrimp go from our tank to yours in the same day, calm and ready to settle in.</p>
         </div>
       </div>
@@ -357,7 +371,7 @@
   <!-- FOOTER -->
   <footer>
     <a href="index.html" class="footer-logo">
-      <div class="footer-logo-mark">🦐</div>
+      <div class="footer-logo-mark"><img src="images/logo.webp" alt="Shrimp Enthusiast logo" width="40" height="40"></div>
       Shrimp Enthusiast
     </a>
     <div class="footer-nav">
