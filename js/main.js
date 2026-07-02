@@ -47,24 +47,45 @@ function startAuto() {
 document.getElementById('slidePrev').addEventListener('click', () => goTo(current - 1, true));
 document.getElementById('slideNext').addEventListener('click', () => goTo(current + 1, true));
 
-// ── Touch drag (follows finger in real time) ──
-let touchStartX   = 0;
+// ── Touch drag (follows finger in real time, vertical scroll unaffected) ──
+let touchStartX    = 0;
+let touchStartY    = 0;
 let touchStartTime = 0;
-let isDragging    = false;
+let isDragging     = false; // confirmed horizontal drag
+let isScrolling    = false; // confirmed vertical scroll — hands off
 const banner = document.getElementById('photoBanner');
 
 banner.addEventListener('touchstart', (e) => {
   touchStartX    = e.touches[0].clientX;
+  touchStartY    = e.touches[0].clientY;
   touchStartTime = Date.now();
-  isDragging     = true;
-  track.style.transition = 'none'; // disable CSS transition so track moves with finger
+  isDragging     = false;
+  isScrolling    = false;
+  // Don't disable transition or lock direction yet — wait for first move
 }, { passive: true });
 
+// non-passive so we can call preventDefault() to block scroll during horizontal drag
 banner.addEventListener('touchmove', (e) => {
-  if (!isDragging) return;
-  const delta = e.touches[0].clientX - touchStartX;
-  track.style.transform = `translateX(calc(-${current * 100}% + ${delta}px))`;
-}, { passive: true });
+  const dx = e.touches[0].clientX - touchStartX;
+  const dy = e.touches[0].clientY - touchStartY;
+
+  // Wait for a 5 px movement before committing to a direction
+  if (!isDragging && !isScrolling) {
+    if (Math.abs(dx) < 5 && Math.abs(dy) < 5) return;
+    if (Math.abs(dy) > Math.abs(dx)) {
+      isScrolling = true; // vertical — let the browser scroll the page
+      return;
+    }
+    // Horizontal — take over and disable the CSS transition
+    isDragging = true;
+    track.style.transition = 'none';
+  }
+
+  if (isScrolling) return;
+
+  e.preventDefault(); // prevent page scroll while dragging the banner
+  track.style.transform = `translateX(calc(-${current * 100}% + ${dx}px))`;
+}, { passive: false });
 
 function snapTouch(endX) {
   if (!isDragging) return;
