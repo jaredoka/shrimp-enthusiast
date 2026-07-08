@@ -11,6 +11,7 @@ var STOCK = {
   'blue-cherry':       true,
   'cull-shrimp':       true,
   'orange-sunkist':    true,
+  'ramshorn-snail':    true,
   'red-cherry':        true,
   'yellow-goldenback': true
 };
