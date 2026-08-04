@@ -67,8 +67,13 @@
   var input = document.getElementById('searchInput');
   var results = document.getElementById('searchResults');
   var btn = document.getElementById('searchBtn');
+  var stock = (typeof STOCK !== 'undefined') ? STOCK : null;
 
   if (!overlay || !input || !results || !btn) return;
+
+  function isAvailable(v) {
+    return !stock || stock[v.slug] !== false;
+  }
 
   function render(items) {
     if (items.length === 0) {
@@ -85,7 +90,7 @@
   btn.addEventListener('click', function() {
     overlay.classList.add('open');
     input.value = '';
-    render(varieties);
+    render(varieties.filter(isAvailable));
     setTimeout(function() { input.focus(); }, 50);
   });
 
@@ -99,9 +104,9 @@
 
   input.addEventListener('input', function() {
     var q = input.value.toLowerCase().trim();
-    if (!q) { render(varieties); return; }
+    if (!q) { render(varieties.filter(isAvailable)); return; }
     render(varieties.filter(function(v) {
-      return v.name.toLowerCase().indexOf(q) !== -1;
+      return isAvailable(v) && v.name.toLowerCase().indexOf(q) !== -1;
     }));
   });
 })();
@@ -277,6 +282,10 @@ document.addEventListener('DOMContentLoaded', function() {
         addBtn.disabled = true;
         addBtn.textContent = 'Out of Stock';
       }
+      var qtyMinus = document.getElementById('qtyMinus');
+      var qtyPlus = document.getElementById('qtyPlus');
+      if (qtyMinus) qtyMinus.disabled = true;
+      if (qtyPlus) qtyPlus.disabled = true;
     }
   }
 });
