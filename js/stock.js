@@ -8,7 +8,7 @@
 
 var STOCK = {
   'bloody-mary':       false,
-  'blue-cherry':       true,
+  'blue-cherry':       false,
   'cull-shrimp':       true,
   'orange-sunkist':    true,
   'ramshorn-snail':    true,
