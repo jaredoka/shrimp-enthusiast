@@ -121,24 +121,33 @@ Then open `http://localhost:8000`.
 
 ## Development Workflow
 
-This project uses **GitHub Flow**. The `main` branch is always production — Cloudflare Pages auto-deploys it to [shrimpenthusiast.com](https://shrimpenthusiast.com/).
+The `main` branch is always production — Cloudflare Pages auto-deploys it to [shrimpenthusiast.com](https://shrimpenthusiast.com/).
 
 ### Rules
 
-- **Never commit directly to `main`.**
-- Every change (feature, fix, chore) starts on its own branch.
-- Changes merge into `main` via a Pull Request on GitHub.
+- **Commit directly to `main`** for day-to-day changes (stock toggles, price updates, small fixes) — simple and fast.
+- For larger changes (new pages, redesigns, risky refactors), use a **feature branch + Pull Request** for a review checkpoint before merging.
 - Cloudflare Pages creates a preview deployment for every PR automatically.
 
-### Branch naming
+### Everyday updates (stock, prices, quick fixes)
+
+```bash
+git checkout main && git pull origin main
+# ... make changes, commit ...
+git add <files>
+git commit -m "fix(shop): mark Blue Cherry as out of stock"
+git push origin main
+```
+
+The site updates automatically on Cloudflare Pages.
+
+### Larger changes (feature branch + PR)
 
 | Prefix | Use for | Example |
 |--------|---------|---------|
 | `feature/` | New functionality | `feature/email-notifications` |
 | `fix/` | Bug fixes | `fix/cart-quantity-not-updating` |
 | `chore/` | Config, docs, cleanup | `chore/update-readme` |
-
-### Starting a new task
 
 ```bash
 git checkout main && git pull origin main
@@ -147,14 +156,3 @@ git checkout -b feature/<task-name>
 git push -u origin feature/<task-name>
 # Open PR on GitHub → review → merge → delete branch
 ```
-
-### Branch protection
-
-To prevent accidental pushes to `main`, configure branch protection in the GitHub repo settings:
-
-1. Go to **Settings → Branches** in the GitHub repo.
-2. Click **Add branch ruleset** (or **Add rule** under classic protection).
-3. Set the branch name pattern to `main`.
-4. Enable **Require a pull request before merging**.
-5. Optionally enable **Require approvals** (useful if collaborating).
-6. Save the rule.
