@@ -8,10 +8,9 @@
 
 var STOCK = {
   'bloody-mary':       false,
-  'blue-cherry':       false,
+  'blue-cherry':       true,
   'cull-shrimp':       true,
   'orange-sunkist':    true,
-  'ramshorn-snail':    true,
   'red-cherry':        true,
   'yellow-goldenback': true
 };
