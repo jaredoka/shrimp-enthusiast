@@ -10,7 +10,7 @@ var STOCK = {
   'bloody-mary':       false,
   'blue-cherry':       true,
   'cull-shrimp':       true,
-  'orange-sunkist':    true,
+  'orange-sunkist':    false,
   'red-cherry':        true,
   'yellow-goldenback': true
 };
