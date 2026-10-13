@@ -60,7 +60,8 @@
     { name: 'Orange Sunkist', slug: 'orange-sunkist', color: '#E08A10' },
     { name: 'Yellow Goldenback', slug: 'yellow-goldenback', color: '#F0C030' },
     { name: 'Bloody Mary', slug: 'bloody-mary', color: '#7A1A1A' },
-    { name: 'Cull Shrimp', slug: 'cull-shrimp', color: '#999' }
+    { name: 'Cull Shrimp', slug: 'cull-shrimp', color: '#999' },
+    { name: 'Ramshorn Snail', slug: 'ramshorn-snail', color: '#C84040' }
   ];
   var overlay = document.getElementById('searchOverlay');
   var input = document.getElementById('searchInput');
