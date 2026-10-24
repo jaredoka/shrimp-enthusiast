@@ -194,6 +194,7 @@ var Cart = (function() {
     });
     msg += '\nTotal: BND $' + getTotal().toFixed(2);
     msg += '\n\nCould you confirm availability? Thank you!';
+    msg += '\n\n(Ordered from shrimpenthusiast.com)';
     checkoutBtn.href = 'https://wa.me/6738740667?text=' + encodeURIComponent(msg);
 
     // Qty +/- buttons
@@ -243,6 +244,21 @@ var Cart = (function() {
 })();
 
 Cart.updateBadge();
+
+// ── GA4: checkout click (WhatsApp handoff) ──
+document.addEventListener('click', function(e) {
+  var btn = e.target.closest && e.target.closest('#cartCheckoutBtn');
+  if (!btn || typeof window.gtag !== 'function') return;
+  var cart = Cart.getCart();
+  var total = cart.reduce(function(sum, item) { return sum + item.price * item.qty; }, 0);
+  window.gtag('event', 'begin_checkout', {
+    currency: 'BND',
+    value: Number(total.toFixed(2)),
+    items: cart.map(function(item) {
+      return { item_id: item.slug, item_name: item.name, price: item.price, quantity: item.qty };
+    })
+  });
+});
 
 // ── Stock Status ──
 // Stock is configured in js/stock.js — edit that file to toggle availability.
