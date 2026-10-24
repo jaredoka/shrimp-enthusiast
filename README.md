@@ -141,6 +141,14 @@ git push origin main
 
 The site updates automatically on Cloudflare Pages.
 
+#### Cache versioning (important for JS/CSS changes)
+
+Cloudflare Pages serves `.js` and `.css` with `Cache-Control: max-age=14400` and **ignores `Cache-Control` set in `_headers`**, so a returning visitor can run stale code for up to 4 hours.
+
+Because of that, asset URLs carry a version string, e.g. `js/shared.js?v=20261024`.
+
+**If you edit `css/style.css` or anything in `js/`, bump that date in every HTML page before pushing.** Changes to HTML, prices, or the `STOCK` values in `js/stock.js` that don't affect the file's code still need the bump if `stock.js` itself changed. A simple find-and-replace of `?v=20261024` across the repo is enough.
+
 ### Larger changes (feature branch + PR)
 
 | Prefix | Use for | Example |

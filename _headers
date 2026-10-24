@@ -4,10 +4,5 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
 
-/js/*
-  Cache-Control: public, max-age=300, must-revalidate
-  X-Cache-Test: matched-js
-
-/css/*
-  Cache-Control: public, max-age=300, must-revalidate
-  X-Cache-Test: matched-css
+# Note: Pages forces Cache-Control: max-age=14400 on static assets and
+# ignores this file for that header. Asset URLs carry ?v= instead.
